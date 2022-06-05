@@ -1,7 +1,7 @@
 package agent;
 
-import View.CLIIO;
-import View.View;
+import view.CLIIO;
+import view.View;
 
 public class Main {
     public static void main(String[] args) {
