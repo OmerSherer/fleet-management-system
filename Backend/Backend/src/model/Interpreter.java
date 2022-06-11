@@ -15,6 +15,9 @@ public class Interpreter {
     }
 
     public void interpret(String commands) {
+        if(commands.isEmpty()){
+            return;
+        }
         String[] arr = commands.split(" ");
         int index = 0;
         while (index < arr.length) {
