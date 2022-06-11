@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 
 public class CLIIO implements DefaultIO{
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
     @Override
     public String readText() {
         return scanner.nextLine();
