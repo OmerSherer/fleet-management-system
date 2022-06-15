@@ -1,5 +1,7 @@
 package frontend.Model;
 
+import java.util.Observer;
+
 import frontend.serializable.AgentData;
 import frontend.serializable.Controls;
 import frontend.serializable.FlightCode;
@@ -29,6 +31,10 @@ public interface FrontendModel {
 
     void acquirePastFlights();
 
-    void acquirePastFlightInfo(FlightCode flightCode);
+    void acquirePastFlightInfo(String id);
+
+    void close();
+
+    void addObserverToModel(Observer o);
 
 }
