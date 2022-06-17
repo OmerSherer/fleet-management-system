@@ -1,4 +1,4 @@
-package Interpeter;
+package model.Interpreter;
 
 public class Token {
 	

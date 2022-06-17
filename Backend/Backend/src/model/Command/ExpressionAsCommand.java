@@ -1,7 +1,7 @@
 package Command;
 
 import Expression.Expression;
-import Interpeter.Token;
+import Interpreter.Token;
 
 public class ExpressionAsCommand extends Command {
 

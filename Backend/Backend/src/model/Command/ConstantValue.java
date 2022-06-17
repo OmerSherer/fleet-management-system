@@ -1,6 +1,6 @@
 package Command;
 
-import Interpeter.Token;
+import Interpreter.Token;
 
 public class ConstantValue extends Command.Command {
 

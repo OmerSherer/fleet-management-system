@@ -1,4 +1,4 @@
-package Interpeter;
+package model.Interpreter;
 
 import java.io.File;
 import java.util.HashMap;
@@ -11,7 +11,7 @@ import Command.Command;
 import Command.CommandFactory;
 import Expression.ExpressionFactory;
 
-public class Interpeter {
+public class Interpreter {
 
 	public static void run(Queue<Command> cmds) throws Exception {
 		while(!cmds.isEmpty())

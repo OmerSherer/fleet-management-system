@@ -2,7 +2,7 @@ package Command;
 
 import java.util.Map;
 
-import Interpeter.Token;
+import Interpreter.Token;
 
 public class VarCommand extends Command {
 	

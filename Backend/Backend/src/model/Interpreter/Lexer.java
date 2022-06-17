@@ -1,10 +1,8 @@
-package Interpeter;
+package Interpreter;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
-
-import model.Interpeter.*;
 
 public class Lexer {
 
@@ -36,14 +34,14 @@ public class Lexer {
 			this.in.useDelimiter(data);
 	}
 	
-	public Interpeter.Token next() {
+	public Interpreter.Token next() {
 		if(in.hasNextDouble())
-			return new Interpeter.Token(in.nextDouble());
-		return new Interpeter.Token(in.next());
+			return new Interpreter.Token(in.nextDouble());
+		return new Interpreter.Token(in.next());
 	}
 	
-	public List<Interpeter.Token> getAllTokens() {
-		List<Interpeter.Token> tokens = new LinkedList<>();
+	public List<Interpreter.Token> getAllTokens() {
+		List<Interpreter.Token> tokens = new LinkedList<>();
 		
 		while(this.hasNext()) {
 			tokens.add(this.next());

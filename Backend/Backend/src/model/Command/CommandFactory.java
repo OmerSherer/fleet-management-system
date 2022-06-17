@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import Expression.Expression;
-import Interpeter.Token;
+import Interpreter.Token;
 
 public class CommandFactory {
 

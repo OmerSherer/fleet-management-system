@@ -1,4 +1,4 @@
-package Interpeter;
+package model.Interpreter;
 
 import java.util.Collections;
 import java.util.LinkedList;
