@@ -1,8 +1,8 @@
-package Command;
+package model.Command;
 
 import java.util.Map;
 
-import Interpreter.Token;
+import model.Interpreter.Token;
 
 public class VarCommand extends Command {
 	

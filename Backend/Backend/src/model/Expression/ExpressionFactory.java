@@ -1,9 +1,9 @@
-package Expression;
+package model.Expression;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import Command.Command;
+import model.Command.Command;
 
 public class ExpressionFactory {
 
@@ -14,10 +14,10 @@ public class ExpressionFactory {
 	}
 
 	public ExpressionFactory() {
-		map.put("Plus", (left, right) -> new Plus(left, right));
-		map.put("Minus", (left, right) -> new Minus(left, right));
-		map.put("Mul", (left, right) -> new Mul(left, right));
-		map.put("Div", (left, right) -> new Div(left, right));
+		map.put("Plus", Plus::new);
+		map.put("Minus", Minus::new);
+		map.put("Mul", Mul::new);
+		map.put("Div", Div::new);
 	}
 	
 	public boolean isExpressionExists(String name) {

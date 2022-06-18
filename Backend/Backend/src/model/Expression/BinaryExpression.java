@@ -1,4 +1,4 @@
-package Expression;
+package model.Expression;
 
 public abstract class BinaryExpression implements Expression {
 

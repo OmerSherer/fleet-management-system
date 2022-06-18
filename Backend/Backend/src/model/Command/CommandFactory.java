@@ -1,10 +1,14 @@
-package Command;
+package model.Command;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import Expression.Expression;
-import Interpreter.Token;
+import model.Expression.Expression;
+import model.Expression.ExpressionFactory;
+import model.Interpreter.Lexer;
+import model.Interpreter.Parser;
+import model.Interpreter.Token;
+import model.Command.Command;
 
 public class CommandFactory {
 
@@ -24,17 +28,17 @@ public class CommandFactory {
 	}
 	
 	private static interface CommandCreator {
-		public Command.Command create(Command.Command[] args);
+		public Command create(Command[] args);
 	}
 	
 	public CommandFactory(Map<String, Token> symbolTable) {		
-		varHandler = new CommandHandler((args) -> new Command.VarCommand(symbolTable, args[0], args[1]), Command.VarCommand.numOfArgs);
-		openHandler = new CommandHandler((args) -> new Command.OpenCommand(args[0], args[1]), Command.OpenCommand.numOfArgs);
-		printHandler = new CommandHandler((args) -> new Command.PrintCommand(args), Command.PrintCommand.numOfArgs);
+		varHandler = new CommandHandler((args) -> new VarCommand(symbolTable, args[0], args[1]), VarCommand.numOfArgs);
+		openHandler = new CommandHandler((args) -> new OpenCommand(args[0], args[1]), OpenCommand.numOfArgs);
+		printHandler = new CommandHandler(PrintCommand::new, PrintCommand.numOfArgs);
 		
-		cmds.put("Open", openHandler);
-		cmds.put("Print", printHandler);
-		cmds.put("Var", varHandler);
+		cmds.put("open", openHandler);
+		cmds.put("print", printHandler);
+		cmds.put("var", varHandler);
 
 	}
 	

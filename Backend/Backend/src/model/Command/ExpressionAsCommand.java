@@ -1,7 +1,7 @@
-package Command;
+package model.Command;
 
-import Expression.Expression;
-import Interpreter.Token;
+import model.Expression.Expression;
+import model.Interpreter.Token;
 
 public class ExpressionAsCommand extends Command {
 

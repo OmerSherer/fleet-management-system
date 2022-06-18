@@ -1,4 +1,4 @@
-package Expression;
+package model.Expression;
 
 public class Minus extends BinaryExpression {
 

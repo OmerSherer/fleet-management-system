@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
-import Command.Command;
-import Command.CommandFactory;
-import Command.ConstantValue;
-import Expression.Expression;
-import Expression.ExpressionFactory;
+import  model.Command.Command;
+import  model.Command.CommandFactory;
+import  model.Command.ConstantValue;
+import  model.Expression.Expression;
+import  model.Expression.ExpressionFactory;
 
 public class Parser {
 
@@ -45,7 +45,7 @@ public class Parser {
 		for (int i = 0; i < numOfArgs && !stack.isEmpty(); i++) {
 			Command arg = stack.pop();
 			
-			if(cmdName != "Var")
+			if(cmdName != "var")
 				arg = symbolResolv(arg);
 			
 			args.add(arg);
@@ -83,14 +83,14 @@ public class Parser {
 		List<Token> tokens = lexer.getAllTokens();
 
 		// Every command is prefix - we would like to use it as a postfix.
-		Collections.reverse(tokens); 
+		Collections.reverse(tokens);
 
 		for (int i = 0; i < tokens.size(); i++) {
 			Token token = tokens.get(i);
 
 			if (!token.isContainsValue())
 				throw new Exception("Invalid token");
-			
+
 			String tokenStr = token.asString();
 			// Replace symbols			
 			if (cmdsFactory.isCommandExists(tokenStr)) {
@@ -105,25 +105,27 @@ public class Parser {
 				// We support only binary expressions.
 				if(cmds.size() < 2)
 					throw new Exception("Expression " + tokenStr + " expected 2 arguments" + ", recived " + cmds.size());
-				
+
 				Command left = symbolResolv(cmds.pop());
 				Command right = symbolResolv(cmds.pop());
-				
+
 				Expression exp = expsFactory.getExpression(tokenStr, left, right);
 				Command cmd = cmdsFactory.wrapExpression(exp);
 				validateAndPushCommand(cmds, cmd);
 				continue;
 			}
-			
+
 			// Probably it is just a constant value (String / Double)
 			Command cmd = new ConstantValue(token);
 			validateAndPushCommand(cmds, cmd);
-		
+
 		}
 
 		if(cmds.size() != 1)
 			throw new Exception("Invalid syntax");
 		return cmds.pop();
 	}
+
+
 
 }
