@@ -6,7 +6,7 @@ import frontend.ViewModel.FrontendViewModel;
 import frontend.serializable.Controls;
 
 public interface FrontendView extends Observer {
-    void run();
+    void startTheApp(String backendIP, int backendPort);
 
     void setViewModel(FrontendViewModel frontendViewModel);
 
