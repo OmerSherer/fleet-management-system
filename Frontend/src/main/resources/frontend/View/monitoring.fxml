@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.ScatterChart?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
@@ -15,6 +26,83 @@
             <Menu fx:id="timeCapsuleMenuItem" mnemonicParsing="false" text="Time Capsule" />
         </menus>
       </MenuBar>
-      <AnchorPane />
+      <AnchorPane>
+         <children>
+            <HBox prefHeight="373.0" prefWidth="600.0">
+               <children>
+                  <ListView fx:id="attrs" minHeight="-Infinity" minWidth="-Infinity" prefHeight="315.0" prefWidth="119.0" />
+                  <VBox prefHeight="400.0" prefWidth="160.0">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <LineChart fx:id="firstParam" minHeight="-Infinity" minWidth="-Infinity" prefHeight="147.0" prefWidth="138.0">
+                                <xAxis>
+                                  <CategoryAxis side="BOTTOM" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis side="LEFT" />
+                                </yAxis>
+                              </LineChart>
+                              <LineChart fx:id="secondParam" minHeight="-Infinity" minWidth="-Infinity" prefHeight="147.0" prefWidth="140.0">
+                                <xAxis>
+                                  <CategoryAxis side="BOTTOM" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis side="LEFT" />
+                                </yAxis>
+                              </LineChart>
+                           </children>
+                        </HBox>
+                        <ScatterChart fx:id="mainChart" minHeight="-Infinity" minWidth="-Infinity" prefHeight="177.0" prefWidth="248.0">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </ScatterChart>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="373.0" prefWidth="208.0">
+                     <children>
+                        <GridPane prefHeight="190.0" prefWidth="203.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="45.0" minWidth="0.0" prefWidth="6.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="182.0" minWidth="10.0" prefWidth="182.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="166.0" minHeight="10.0" prefHeight="166.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="26.0" minHeight="0.0" prefHeight="8.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Slider fx:id="rudder" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Slider fx:id="throttle" orientation="VERTICAL" />
+                              <Canvas height="166.0" width="183.0" GridPane.columnIndex="1" />
+                           </children>
+                        </GridPane>
+                        <GridPane prefHeight="169.0" prefWidth="203.0">
+                          <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Canvas fx:id="height" height="88.0" width="67.0" />
+                              <Canvas fx:id="speed" height="88.0" width="67.0" GridPane.columnIndex="1" />
+                              <Canvas fx:id="direction" height="86.0" width="70.0" GridPane.columnIndex="2" />
+                              <Canvas fx:id="horizon" height="85.0" width="68.0" GridPane.rowIndex="1" />
+                              <Canvas fx:id="turn" height="87.0" width="69.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Canvas fx:id="vertSpeed" height="86.0" width="69.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children></AnchorPane>
    </children>
 </VBox>
