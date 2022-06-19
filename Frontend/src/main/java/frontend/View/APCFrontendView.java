@@ -1,6 +1,8 @@
 package frontend.View;
 
 import javafx.application.Application;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -9,8 +11,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Observable;
 
+import frontend.View.Controllers.FleetOverview;
+import frontend.View.Controllers.FxmlController;
 import frontend.ViewModel.FrontendViewModel;
 import frontend.serializable.Controls;
+import frontend.serializable.*;
 
 /**
  * JavaFX App
@@ -18,96 +23,123 @@ import frontend.serializable.Controls;
 public class APCFrontendView extends Application implements FrontendView {
 
     private static Scene scene;
-    private FrontendViewModel viewModel;
+    private static FrontendViewModel viewModel;
+    private static FxmlController controller;
+    public static SimpleObjectProperty<GeneralData> generalData;
+    public static SimpleObjectProperty<MonitoringData> monitoringData;
+    public static SimpleObjectProperty<PastFlights> pastFlights;
+    public static SimpleObjectProperty<PastFlightInfo> pastFlightInfo;
+    public static SimpleBooleanProperty isLoading;
+    private static int backendPort;
+    private static String backendIP;
+
+    public APCFrontendView() {
+        APCFrontendView.generalData = new SimpleObjectProperty<>();
+        APCFrontendView.monitoringData = new SimpleObjectProperty<>();
+        APCFrontendView.pastFlights = new SimpleObjectProperty<>();
+        APCFrontendView.pastFlightInfo = new SimpleObjectProperty<>();
+        APCFrontendView.isLoading = new SimpleBooleanProperty();
+    }
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("loading"), 640, 480);
+        scene = new Scene(loadFXML1("loading"), 640, 480);
         stage.setScene(scene);
         stage.show();
+        new Thread(() -> {
+            try {
+                connectToBackend();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
 
-    public static void setRoot(String fxml) throws IOException {
+    private void connectToBackend() throws IOException {
+        viewModel.connectToBackend(backendIP, backendPort);
+        setRoot("fleetoverview");
+    }
+
+    public void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 
-    private static Parent loadFXML(String fxml) throws IOException {
+    private Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(APCFrontendView.class.getResource(fxml + ".fxml"));
-        fxmlLoader.getController();
+        switch (fxml) {
+            case "fleetoverview":
+                controller = new FleetOverview();
+                break;
+
+            default:
+                try {
+                    throw new Exception("Controller not found");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+        }
+        // controller = new FleetOverview();
+        fxmlLoader.setController(controller);
+        // controller = fxmlLoader.getController();
+        controller.init(this, generalData, monitoringData, pastFlights, pastFlightInfo, isLoading);
         return fxmlLoader.load();
     }
 
-    public static void main(String[] args) throws IOException {
-        launch();
+    private Parent loadFXML1(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(APCFrontendView.class.getResource(fxml + ".fxml"));
+        return fxmlLoader.load();
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
     public void setViewModel(FrontendViewModel frontendViewModel) {
         viewModel = frontendViewModel;
+        viewModel.bindProp(generalData, monitoringData, pastFlights, pastFlightInfo, isLoading);
     }
 
     @Override
     public void getGeneralData() {
-        // TODO Auto-generated method stub
-
+        viewModel.getGeneralData();
     }
 
     @Override
     public void getMonitoringData() {
-        // TODO Auto-generated method stub
-
+        viewModel.getMonitoringData();
     }
 
     @Override
     public void sendCode(String string) {
-        // TODO Auto-generated method stub
-
+        viewModel.sendCode(string);
     }
 
     @Override
     public void controlAgent(Controls controls) {
-        // TODO Auto-generated method stub
-
+        viewModel.controlAgent(controls);
     }
 
     @Override
     public void getPastFlights() {
-        // TODO Auto-generated method stub
-
+        viewModel.getPastFlights();
     }
 
     @Override
     public void getPastFlightInfo(String string) {
-        // TODO Auto-generated method stub
-
+        viewModel.getPastFlightInfo(string);
     }
 
     @Override
     public boolean connectToBackend(String IP, int port) {
-        // TODO Auto-generated method stub
-        return false;
+        return viewModel.connectToBackend(IP, port);
     }
 
     @Override
-    public void run() {
-        new Thread(() -> launch()).start();
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        try {
-            APCFrontendView.setRoot("primary");
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+    public void startTheApp(String backendIP, int backendPort) {
+        APCFrontendView.backendIP = backendIP;
+        APCFrontendView.backendPort = backendPort;
+        launch();
     }
 
 }

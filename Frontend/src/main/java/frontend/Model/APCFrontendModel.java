@@ -22,16 +22,22 @@ public class APCFrontendModel extends Observable implements FrontendModel {
     @Override
     public boolean connectToBackend(String IP, int port) {
         try {
-            backend = new Socket(IP, port);
-            System.out.println("connected to server");
-            serverInput = new ObjectInputStream(backend.getInputStream());
-            serverOutput = new ObjectOutputStream(backend.getOutputStream());
-        } catch (UnknownHostException e) {
-            return false;
-        } catch (IOException e) {
-            return false;
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-        return false;
+        return true;
+        // try {
+        // backend = new Socket(IP, port);
+        // System.out.println("connected to server");
+        // serverInput = new ObjectInputStream(backend.getInputStream());
+        // serverOutput = new ObjectOutputStream(backend.getOutputStream());
+        // return true;
+        // } catch (UnknownHostException e) {
+        // return false;
+        // } catch (IOException e) {
+        // return false;
+        // }
     }
 
     @Override

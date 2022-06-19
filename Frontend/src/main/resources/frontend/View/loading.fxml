@@ -5,7 +5,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.LoadingController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.View.Controllers.LoadingController">
    <children>
       <Text fx:id="loadingText" layoutX="74.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Loading... &#10;Please wait" textAlignment="CENTER">
          <font>

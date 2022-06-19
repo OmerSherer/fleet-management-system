@@ -4,9 +4,8 @@ import java.util.Observable;
 import java.util.Observer;
 
 import frontend.Model.FrontendModel;
-import frontend.serializable.AgentData;
-import frontend.serializable.Controls;
 import frontend.serializable.*;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
 public class APCFrontendViewModel extends Observable implements Observer, FrontendViewModel {
@@ -15,7 +14,16 @@ public class APCFrontendViewModel extends Observable implements Observer, Fronte
     public SimpleObjectProperty<MonitoringData> monitoringData;
     public SimpleObjectProperty<PastFlights> pastFlights;
     public SimpleObjectProperty<PastFlightInfo> pastFlightInfo;
+    public SimpleBooleanProperty isLoading;
     private FrontendModel frontendModel;
+
+    public APCFrontendViewModel() {
+        this.generalData = new SimpleObjectProperty<>();
+        this.monitoringData = new SimpleObjectProperty<>();
+        this.pastFlights = new SimpleObjectProperty<>();
+        this.pastFlightInfo = new SimpleObjectProperty<>();
+        this.isLoading = new SimpleBooleanProperty();
+    }
 
     @Override
     public boolean connectToBackend(String IP, int port) {
@@ -30,6 +38,7 @@ public class APCFrontendViewModel extends Observable implements Observer, Fronte
 
     @Override
     public void getGeneralData() {
+        isLoading.set(true);
         new Thread(() -> frontendModel.acquireGeneralData()).run();
     }
 
@@ -46,6 +55,7 @@ public class APCFrontendViewModel extends Observable implements Observer, Fronte
 
     @Override
     public void getMonitoringData() {
+        isLoading.set(true);
         new Thread(() -> frontendModel.acquireMonitoringData(chosenPlane)).run();
     }
 
@@ -66,6 +76,7 @@ public class APCFrontendViewModel extends Observable implements Observer, Fronte
 
     @Override
     public void getPastFlights() {
+        isLoading.set(true);
         new Thread(() -> frontendModel.acquirePastFlights()).run();
     }
 
@@ -76,6 +87,7 @@ public class APCFrontendViewModel extends Observable implements Observer, Fronte
 
     @Override
     public void getPastFlightInfo(String string) {
+        isLoading.set(true);
         new Thread(() -> frontendModel.acquirePastFlightInfo(string)).run();
     }
 
@@ -91,7 +103,19 @@ public class APCFrontendViewModel extends Observable implements Observer, Fronte
             setMonitoringData();
             setPastFlights();
             setPastFlightInfo();
+            isLoading.set(false);
         }
+    }
+
+    @Override
+    public void bindProp(SimpleObjectProperty<GeneralData> generalData,
+            SimpleObjectProperty<MonitoringData> monitoringData, SimpleObjectProperty<PastFlights> pastFlights,
+            SimpleObjectProperty<PastFlightInfo> pastFlightInfo, SimpleBooleanProperty isLoading) {
+        generalData.bind(this.generalData);
+        monitoringData.bind(this.monitoringData);
+        pastFlights.bind(this.pastFlights);
+        pastFlightInfo.bind(this.pastFlightInfo);
+        isLoading.bind(this.isLoading);
     }
 
 }
