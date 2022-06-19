@@ -4,7 +4,6 @@ import java.util.Observer;
 
 import frontend.serializable.AgentData;
 import frontend.serializable.Controls;
-import frontend.serializable.FlightCode;
 import frontend.serializable.GeneralData;
 import frontend.serializable.MonitoringData;
 import frontend.serializable.PastFlightInfo;
