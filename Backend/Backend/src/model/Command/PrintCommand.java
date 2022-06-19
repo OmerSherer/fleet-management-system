@@ -1,6 +1,6 @@
-package Command;
+package model.Command;
 
-import Interpreter.Token;
+import model.Interpreter.Token;
 
 public class PrintCommand extends Command {
 

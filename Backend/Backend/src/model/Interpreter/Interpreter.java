@@ -7,9 +7,11 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Scanner;
 
-import Command.Command;
-import Command.CommandFactory;
-import Expression.ExpressionFactory;
+import model.*;
+import model.Command.Command;
+import model.Command.CommandFactory;
+import model.Expression.ExpressionFactory;
+
 
 public class Interpreter {
 

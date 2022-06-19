@@ -1,8 +1,8 @@
-package Command;
+package model.Command;
 
-import Interpreter.Token;
+import model.Interpreter.Token;
 
-public class ConstantValue extends Command.Command {
+public class ConstantValue extends Command {
 
 	private Token value;
 		
