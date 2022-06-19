@@ -1,10 +1,6 @@
 package model.Interpreter;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Stack;
+import java.util.*;
 
 import  model.Command.Command;
 import  model.Command.CommandFactory;
@@ -45,7 +41,7 @@ public class Parser {
 		for (int i = 0; i < numOfArgs && !stack.isEmpty(); i++) {
 			Command arg = stack.pop();
 			
-			if(cmdName != "var")
+			if(!Objects.equals(cmdName, "var"))
 				arg = symbolResolv(arg);
 			
 			args.add(arg);
@@ -125,7 +121,5 @@ public class Parser {
 			throw new Exception("Invalid syntax");
 		return cmds.pop();
 	}
-
-
 
 }
