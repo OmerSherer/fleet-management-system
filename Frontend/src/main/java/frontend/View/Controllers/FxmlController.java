@@ -47,6 +47,9 @@ public abstract class FxmlController {
         });
     }
 
+    public void onLoad() {
+    }
+
     protected void onGeneralDataChange() {
     }
 

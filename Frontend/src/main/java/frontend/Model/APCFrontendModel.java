@@ -22,7 +22,7 @@ public class APCFrontendModel extends Observable implements FrontendModel {
     @Override
     public boolean connectToBackend(String IP, int port) {
         try {
-            Thread.sleep(5000);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -66,7 +66,6 @@ public class APCFrontendModel extends Observable implements FrontendModel {
             serverOutput.writeObject(FrontendMessage.getGeneralData);
             generalData = (GeneralData) serverInput.readObject();
             setChanged();
-            ;
             notifyObservers();
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
@@ -79,7 +78,6 @@ public class APCFrontendModel extends Observable implements FrontendModel {
             serverOutput.writeObject(FrontendMessage.getMonitoringData);
             monitoringData = (MonitoringData) serverInput.readObject();
             setChanged();
-            ;
             notifyObservers();
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();

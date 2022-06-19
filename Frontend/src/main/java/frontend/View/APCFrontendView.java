@@ -46,13 +46,13 @@ public class APCFrontendView extends Application implements FrontendView {
         scene = new Scene(loadFXML1("loading"), 640, 480);
         stage.setScene(scene);
         stage.show();
-        new Thread(() -> {
-            try {
-                connectToBackend();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }).start();
+        // new Thread(() -> {
+        try {
+            connectToBackend();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // }).start();
     }
 
     private void connectToBackend() throws IOException {
@@ -62,6 +62,7 @@ public class APCFrontendView extends Application implements FrontendView {
 
     public void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
+        controller.onLoad();
     }
 
     private Parent loadFXML(String fxml) throws IOException {
