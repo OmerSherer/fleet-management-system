@@ -26,9 +26,10 @@ public class ExpressionFactory {
 	
 	public BinaryExpression getExpression(String name, Command left, Command right) throws NumberFormatException, NullPointerException, Exception {
 		// We assume left & right is command returning double.
-		Expression l = new Number(left.execute().asDouble());
-		Expression r = new Number(right.execute().asDouble());
-		return map.get(name).create(l, r); // map.get(name).create(left, right);
+		//Expression l = new Number(left.execute().asDouble());
+		//Expression r = new Number(right.execute().asDouble());
+		//return map.get(name).create(l, r); // map.get(name).create(left, right);
+		return null;
 	}
 
 }
