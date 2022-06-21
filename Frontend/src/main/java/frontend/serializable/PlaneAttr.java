@@ -6,7 +6,7 @@ import java.util.List;
 public class PlaneAttr implements Serializable {
     public String correlativeAttr;
     public double mean;
-    public String correlationType;
+    public CorrelationType correlationType;
     public double std;
     public double threshold;
     public double xCenter;
@@ -35,11 +35,11 @@ public class PlaneAttr implements Serializable {
         this.mean = mean;
     }
 
-    public String getCorrelationType() {
+    public CorrelationType getCorrelationType() {
         return correlationType;
     }
 
-    public void setCorrelationType(String correlationType) {
+    public void setCorrelationType(CorrelationType correlationType) {
         this.correlationType = correlationType;
     }
 

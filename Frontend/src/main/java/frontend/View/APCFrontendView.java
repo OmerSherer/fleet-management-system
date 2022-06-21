@@ -13,6 +13,7 @@ import java.util.Observable;
 
 import frontend.View.Controllers.FleetOverview;
 import frontend.View.Controllers.FxmlController;
+import frontend.View.Controllers.MonitoringController;
 import frontend.ViewModel.FrontendViewModel;
 import frontend.serializable.Controls;
 import frontend.serializable.*;
@@ -57,7 +58,8 @@ public class APCFrontendView extends Application implements FrontendView {
 
     private void connectToBackend() throws IOException {
         viewModel.connectToBackend(backendIP, backendPort);
-        setRoot("fleetoverview");
+        setRoot("monitoring");
+        // setRoot("fleetoverview");
     }
 
     public void setRoot(String fxml) throws IOException {
@@ -70,6 +72,9 @@ public class APCFrontendView extends Application implements FrontendView {
         switch (fxml) {
             case "fleetoverview":
                 controller = new FleetOverview();
+                break;
+            case "monitoring":
+                controller = new MonitoringController();
                 break;
 
             default:
