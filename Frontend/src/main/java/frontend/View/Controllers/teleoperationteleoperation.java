@@ -10,5 +10,5 @@ public void sendCode()
 	String s;
 	
 	
-	setCode(code);
+	setCode(code.);
 }
