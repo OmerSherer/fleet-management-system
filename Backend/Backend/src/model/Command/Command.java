@@ -11,5 +11,7 @@ public abstract class Command {
     }
 
     public abstract void execute();
-    public abstract void setSymbolTable(SymbolTable symbolTable);
+    public void setSymbolTable(SymbolTable symbolTable){
+        this.symbolTable = symbolTable;
+    }
 }

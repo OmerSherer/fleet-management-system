@@ -2,5 +2,7 @@ var variable = 1+1
 if variable <= 3
 {
     var y = ((variable)--1)*2
-    print y
+    print "variable is"
+    print variable
 }
+print y

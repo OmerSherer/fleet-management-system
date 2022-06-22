@@ -8,5 +8,6 @@ public class CommandFactory {
     static {
         commands.put("var", VarCommand.class);
         commands.put("print", PrintCommand.class);
+        commands.put("if", IfCommand.class);
     }
 }

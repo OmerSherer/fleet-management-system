@@ -21,9 +21,15 @@ public class Parser {
 
             if(CommandFactory.commands.containsKey(args[0])){
                 Command command = (Command) CommandFactory.commands.get(args[0]).getConstructor(String[].class).newInstance((Object) args);
-                command.setSymbolTable(symbolTable);
+                // create a symbol table that contains all the variables in the current scope
+
                 if(command instanceof ConditionCommand){
+                    SymbolTable currentSymbolTable = new SymbolTable(symbolTable);
+                    command.setSymbolTable(currentSymbolTable);
                     ((ConditionCommand) command).SetConditionCommand(scanner);
+                }
+                else {
+                    command.setSymbolTable(symbolTable);
                 }
 
                 return command;

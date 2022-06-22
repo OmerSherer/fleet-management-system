@@ -41,8 +41,10 @@ public class PrintCommand extends Command {
         // if the string is a double, print it
         if (ExpressionEvaluator.isDouble(str)) {
             System.out.println(str);
+            return;
         }
 
+        System.out.println("print: Invalid value");
 
     }
 
