@@ -1,5 +1,8 @@
 package model.Expression;
 
+import model.Interpreter.SymbolTable;
+import model.Interpreter.Variable;
+
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
@@ -110,6 +113,14 @@ public class ExpressionEvaluator {
     public static boolean isExpression(String exp) {
         return exp.matches("^[-+*/()0-9.]+$");
     }
+
+    public static String replaceVarWithVal(String exp, SymbolTable symbolTable) {
+        for(Variable var : symbolTable.getVariables()) {
+            exp = exp.replaceAll(var.getName(), Double.toString(var.getValue()));
+        }
+        return exp;
+    }
+
 
     public static void main(String[] args) {
         System.out.println(evaluate("(1+2)*3") == 9);

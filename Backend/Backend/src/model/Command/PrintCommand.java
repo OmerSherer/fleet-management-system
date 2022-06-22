@@ -1,6 +1,7 @@
 package model.Command;
 
 import model.Expression.ExpressionEvaluator;
+import model.Interpreter.SymbolTable;
 
 public class PrintCommand extends Command {
     public PrintCommand() {
@@ -26,7 +27,10 @@ public class PrintCommand extends Command {
         if (str.indexOf('"') != -1 && str.indexOf('"') != str.lastIndexOf('"')) {
             str = str.substring(str.indexOf('"') + 1, str.lastIndexOf('"'));
             System.out.println(str);
+            return;
         }
+
+        str = ExpressionEvaluator.replaceVarWithVal(str, symbolTable);
 
         // evaluate the expression if it is an expression
         if (ExpressionEvaluator.isExpression(str)) {
@@ -40,6 +44,11 @@ public class PrintCommand extends Command {
         }
 
 
+    }
+
+    @Override
+    public void setSymbolTable(SymbolTable symbolTable) {
+        this.symbolTable = symbolTable;
     }
 
     public static void main(String[] args) {
