@@ -19,7 +19,7 @@ public class Interpreter {
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                commands.add(Parser.parse(line, symbolTable));
+                commands.add(Parser.parse(line, symbolTable, scanner));
             }
         } catch (Exception e) {
             e.printStackTrace();
