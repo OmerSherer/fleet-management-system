@@ -6,8 +6,12 @@ import model.Interpreter.Variable;
 
 public class VarCommand extends Command{
 
+    public VarCommand(String[] args) {
+        super(args);
+    }
+
     @Override
-    public void execute(String[] args) {
+    public void execute() {
         if(args.length < 4) {
             System.out.println("Invalid number of arguments");
             return;
@@ -52,18 +56,5 @@ public class VarCommand extends Command{
 
 
     public static void main(String[] args) {
-        VarCommand command = new VarCommand();
-        SymbolTable symbolTable = new SymbolTable();
-        command.setSymbolTable(symbolTable);
-        String str = "var x = 1+1";
-        String[] args1 = str.split(" ");
-        command.execute(args1);
-        str = "var x = bind \"sim\"";
-        command.execute(str.split(" "));
-        str = "var y = x+1";
-        command.execute(str.split(" "));
-        System.out.println(symbolTable.getVariable("x").getValue());
-        System.out.println(symbolTable.getVariable("x").getSim());
-        System.out.println(symbolTable.getVariable("y").getValue());
     }
 }

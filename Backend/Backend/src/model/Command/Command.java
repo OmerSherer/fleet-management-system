@@ -4,6 +4,12 @@ import model.Interpreter.SymbolTable;
 
 public abstract class Command {
     protected SymbolTable symbolTable;
-    public abstract void execute(String[] args);
+    protected String[] args;
+
+    public Command(String[] args) {
+        this.args = args;
+    }
+
+    public abstract void execute();
     public abstract void setSymbolTable(SymbolTable symbolTable);
 }

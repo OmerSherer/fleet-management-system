@@ -12,9 +12,8 @@ public class Parser {
             String[] args = code.split(" ");
 
             if(CommandFactory.commands.containsKey(args[0])){
-                Command command = (Command) CommandFactory.commands.get(args[0]).getConstructor().newInstance();
+                Command command = (Command) CommandFactory.commands.get(args[0]).getConstructor(String[].class).newInstance((Object) args);
                 command.setSymbolTable(symbolTable);
-                command.execute(args);
                 return command;
             }
         } catch (Exception e) {

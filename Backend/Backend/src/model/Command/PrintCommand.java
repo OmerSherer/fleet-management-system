@@ -4,13 +4,13 @@ import model.Expression.ExpressionEvaluator;
 import model.Interpreter.SymbolTable;
 
 public class PrintCommand extends Command {
-    public PrintCommand() {
-        super();
+    public PrintCommand(String[] args) {
+        super(args);
     }
 
 
     @Override
-    public void execute(String[] args) {
+    public void execute() {
         //ExpressionEvaluator evaluator = new ExpressionEvaluator();
 
         // add all the args to a string with spaces in between
@@ -52,9 +52,6 @@ public class PrintCommand extends Command {
     }
 
     public static void main(String[] args) {
-        PrintCommand command = new PrintCommand();
-        String str = "print 1";
-        String[] args1 = str.split(" ");
-        command.execute(args1);
+
     }
 }
