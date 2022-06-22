@@ -25,7 +25,7 @@
                <children>
                   <Pane layoutX="12.0" layoutY="14.0" prefHeight="341.0" prefWidth="212.0">
                      <children>
-                        <TextArea fx:id="textCode" layoutY="-3.0" prefHeight="348.0" prefWidth="212.0" />
+                        <TextArea layoutY="-3.0" prefHeight="348.0" prefWidth="212.0" />
                      </children>
                   </Pane>
                </children>
