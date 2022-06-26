@@ -6,7 +6,7 @@ import view.CLIIO;
 import view.View;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void mian(String[] args) {
         System.out.println("Hello World!");
         View view = new View(new CLIIO());
         Model model = new Model();
